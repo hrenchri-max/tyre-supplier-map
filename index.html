@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nearest tyre suppliers</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="head">
+    <div class="brand"><span class="dot"></span>Supplier map</div>
+    <div class="count" id="count">Loading suppliers…</div>
+  </header>
+
+  <section class="search">
+    <form id="form" autocomplete="off">
+      <label for="q" class="lbl">Breakdown location</label>
+      <div class="row">
+        <input id="q" type="text" inputmode="search" placeholder="Address, town, pin or Google Maps link">
+        <button type="submit" id="go">Find</button>
+      </div>
+    </form>
+    <p class="hint">Type an address or town, paste a shared location pin or a Google Maps link, or tap the map to drop a pin.</p>
+    <div class="chips" id="chips">
+      <span>Try</span>
+      <button type="button" data-q="Gqeberha">Gqeberha</button>
+      <button type="button" data-q="Port Elizabeth">Port Elizabeth</button>
+      <button type="button" data-q="https://maps.google.com/?q=-29.1186,26.2149">Maps link</button>
+      <button type="button" data-q="Pietersburg">Pietersburg</button>
+    </div>
+    <div class="status" id="status" hidden></div>
+  </section>
+
+  <div id="map" class="map" aria-label="Map of South Africa with supplier pins"></div>
+
+  <section class="results" id="results" aria-live="polite">
+    <div class="empty" id="empty">
+      <strong>Set the breakdown spot</strong>
+      The three closest suppliers by driving distance show up here, with the distance and drive time for each.
+    </div>
+    <ol id="list" class="list"></ol>
+  </section>
+
+  <footer class="foot">
+    <span>Supplier pins: OpenStreetMap tyre shops</span>
+    <span>Drive times: OSRM</span>
+    <span id="refreshed"></span>
+  </footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="town-names-data.js"></script>
+<script src="town-names.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

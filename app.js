@@ -219,7 +219,8 @@
       return Promise.all(top.map(function (x, i) { return drawRoute(origin, x, i); })).then(function (lines) {
         lines.forEach(function (l) { if (l) bounds.extend(l.getBounds()); });
         map.fitBounds(bounds, { padding: [30, 30], maxZoom: 14 });
-        routeLayer.eachLayer(function (l) { l.bringToBack(); });
+        // nearest route drawn on top
+        lines.slice().reverse().forEach(function (l) { if (l) l.bringToFront(); });
       });
     }).catch(function () {
       setStatus('The drive-time service did not answer. Try again in a moment.', 'err');
